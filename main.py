@@ -1,13 +1,24 @@
 from faker import Faker
 
-fake = Faker(locale='pt-BR')
+fake = Faker('pt-BR')
 
-nome = fake.name()
-email = fake.email()
-usuario = fake.user_name()
-endereco = fake.address()
+# Gera um nome completo
+name = fake.name()
 
-print(f'Nome: {nome}')
+# Usa o nome para criar um e-mail mais realista
+# Exemplo: pega o primeiro nome e o último nome, remove espaços e adiciona um domínio
+first_name = name.split()[0].lower()
+last_name = name.split()[-1].lower()
+email = f"{first_name}.{last_name}@exemplo.com"
+
+# Gera outros dados
+user = fake.user_name()
+password = fake.password()
+bio = fake.paragraph(nb_sentences=3)
+
+# Exibe os dados gerados
+print(f'Nome: {name}')
 print(f'E-mail: {email}')
-print(f'Usuário: {usuario}')
-print(f'Endereço: {endereco}')
+print(f'Usuário: {user}')
+print(f'Senha: {password}')
+print(f'Bio: {bio}')
